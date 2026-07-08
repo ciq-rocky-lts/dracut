@@ -1,0 +1,34 @@
+From a5b07e49259b201374124ba1e23b931da6e741e0 Mon Sep 17 00:00:00 2001
+From: packit-public-repos-bot
+ <125959684+packit-public-repos-bot@users.noreply.github.com>
+Date: Wed, 11 Dec 2024 11:47:15 +0100
+Subject: [PATCH] Fix configuration for Packit 1.0.0
+
+This commit fixes the configuration for the forthcoming Packit 1.0.0.
+See [our blog post](https://packit.dev/posts/packit_1_0_0_action_required) for more details.
+  - Job type `build` has been changed to `copr_build`.
+  - Job type `production_build` has been changed to `upstream_koji_build`.
+  - Key `upstream_project_name` has been changed to `upstream_package_name`.
+  - Key `synced_files` has been changed to `files_to_sync`.
+
+Please review and merge me before January 2025 otherwise packit-service jobs will fail because of an invalid configuration.
+
+Resolves: RHEL-65249
+---
+ .packit.yml | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/.packit.yml b/.packit.yml
+index 86ba83d2..1439a44e 100644
+--- a/.packit.yml
++++ b/.packit.yml
+@@ -7,7 +7,7 @@
+ # Docs: https://packit.dev/docs/
+ 
+ specfile_path: pkgbuild/dracut.spec
+-synced_files:
++files_to_sync:
+   - .packit.yaml
+ upstream_package_name: dracut
+ downstream_package_name: dracut
+
