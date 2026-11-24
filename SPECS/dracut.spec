@@ -9,7 +9,7 @@
 
 Name: dracut
 Version: 057
-Release: %{dist_free_release}%{?dist}
+Release: %{dist_free_release}.1%{?dist}
 
 Summary: Initramfs generator using udev
 %if 0%{?fedora} || 0%{?rhel}
@@ -140,6 +140,8 @@ Patch111: 0111.patch
 Patch113: 0113.patch
 Patch114: 0114.patch
 Patch116: 0116.patch
+# CVE-2026-15816 — upstream backport
+Patch117: dracut-057-CVE-2026-15816.patch
 
 Source1: https://www.gnu.org/licenses/lgpl-2.1.txt
 
@@ -596,6 +598,9 @@ echo 'dracut_rescue_image="yes"' > $RPM_BUILD_ROOT%{dracutlibdir}/dracut.conf.d/
 %{_prefix}/lib/kernel/install.d/51-dracut-rescue.install
 
 %changelog
+* Fri Sep 04 2026 Jason Rodriguez <jrodriguez@ciq.com> - 057-117.git20260625.1
+- Fix CVE-2026-15816
+
 * Thu Jun 25 2026 Pavel Valena <pvalena@redhat.com> - 057-117.git20260625
 - revert: "feat(i18n): pull 'drm' or 'simpledrm' module unless
 
